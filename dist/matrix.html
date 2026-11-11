@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUMINAPIX PHOTOGRAPHY | Cinematic Vision & Precision Optics</title>
+<link rel="icon" type="image/png" href="./logo.png"/>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "pitch-black": "#070707",
+          "surface": "#121212",
+          "surface-container": "#181818",
+          "surface-card": "#1e1e1e",
+          "stroke-soft": "#2c2c2c",
+          "stroke-bright": "#3f3f3f",
+          "neon-cyan": "#00f5ff",
+          "neon-cyan-glow": "rgba(0, 245, 255, 0.35)",
+          "cyber-lime": "#dfff00",
+          "champagne-gold": "#e5c07b",
+          "on-surface": "#ffffff",
+          "on-surface-variant": "#a3a3a3",
+          "text-muted": "#737373"
+        },
+        fontFamily: {
+          "display": ["Cinzel", "Montserrat", "serif"],
+          "sans": ["Montserrat", "Inter", "sans-serif"],
+          "body": ["Inter", "sans-serif"],
+          "mono": ["JetBrains Mono", "monospace"]
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #070707;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00f5ff;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+  }
+  .gold-glow {
+    text-shadow: 0 0 20px rgba(229, 192, 123, 0.5);
+  }
+  .btn-glow {
+    box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+  .btn-glow:hover {
+    box-shadow: 0 0 35px rgba(223, 255, 0, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Glassmorphic Cards */
+  .glass-card {
+    background: rgba(22, 22, 22, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-card:hover {
+    border-color: rgba(0, 245, 255, 0.4);
+    box-shadow: 0 10px 30px -10px rgba(0, 245, 255, 0.15);
+  }
+
+  /* Ambient Grid background pattern */
+  .cyber-grid {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
+  /* Subtle pulsing ring */
+  @keyframes radar {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+  .radar-ring {
+    animation: radar 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Hide elements during filter */
+  .gallery-item {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+  .gallery-item.hidden-item {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+</style>
+</head>
+
+<body class="bg-pitch-black text-on-surface font-sans antialiased overflow-x-hidden selection:bg-neon-cyan selection:text-black">
+
+<!-- Ambient Cyber Background Glows -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+  <div class="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-neon-cyan/10 rounded-full blur-[140px]"></div>
+  <div class="absolute top-1/2 -right-40 w-[600px] h-[600px] bg-cyber-lime/5 rounded-full blur-[160px]"></div>
+  <div class="absolute bottom-10 left-10 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px]"></div>
+  <div class="absolute inset-0 cyber-grid opacity-40"></div>
+</div>
+
+<!-- ================= NAVIGATION BAR ================= -->
+<header class="fixed top-0 w-full z-50 bg-pitch-black/80 backdrop-blur-2xl border-b border-stroke-soft transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+    
+    <!-- Brand Logo -->
+    <a href="#" class="flex items-center gap-3.5 group">
+      <div class="relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-neon-cyan to-cyber-lime rounded-full blur opacity-40 group-hover:opacity-80 transition duration-300"></div>
+        <img alt="LUMINAPIX Logo" class="relative h-11 w-11 object-contain rounded-full border border-white/20 bg-black shadow-lg" src="./logo.png"/>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-display text-xl sm:text-2xl font-bold tracking-wider text-white group-hover:text-neon-cyan transition-colors">
+          LUMINAPIX
+        </span>
+        <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-neon-cyan/80">
+          Cinematic Studio
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase">
+      <a class="text-on-surface-variant hover:text-neon-cyan transition-colors" href="#portfolio">Portfolio</a>
+      <a class="text-on-surface-variant hover:text-neon-cyan transition-colors" href="#about">The Craft</a>
+      <a class="text-on-surface-variant hover:text-neon-cyan transition-colors" href="#services">Disciplines</a>
+      <a class="text-on-surface-variant hover:text-neon-cyan transition-colors" href="#packages">Investment</a>
+      <a class="text-on-surface-variant hover:text-neon-cyan transition-colors" href="#reviews">Reviews</a>
+      <a class="text-on-surface-variant hover:text-neon-cyan transition-colors" href="#faq">FAQ</a>
+    </nav>
+
+    <!-- Header Actions (Availability Badge + Booking Button) -->
+    <div class="flex items-center gap-3 sm:gap-5">
+      <!-- Live Status Pill (Desktop) -->
+      <div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-white/80">
+        <span class="relative flex h-2 w-2">
+          <span class="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="tracking-wide">2025/2026 Open</span>
+      </div>
+
+      <button onclick="openBookingModal()" class="relative group overflow-hidden bg-gradient-to-r from-neon-cyan to-cyber-lime text-black font-mono text-xs sm:text-sm font-bold px-4 sm:px-6 py-2.5 sm:py-3 rounded uppercase tracking-wider btn-glow active:scale-95">
+        <span class="relative z-10 flex items-center gap-1.5">
+          <span>Book Session</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </span>
+      </button>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-white p-2 rounded focus:outline-none hover:text-neon-cyan transition-colors" aria-label="Toggle navigation">
+        <span id="menu-icon" class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation Drawer -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-stroke-soft bg-pitch-black/95 backdrop-blur-3xl px-6 py-6 transition-all duration-300">
+    <div class="flex flex-col gap-3.5">
+      <div class="flex items-center gap-2 pb-3 mb-2 border-b border-white/10 text-xs font-mono text-emerald-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Accepting 2025/2026 Inquiries</span>
+      </div>
+      <a onclick="toggleMobileMenu()" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-neon-cyan py-2 flex items-center justify-between border-b border-white/5" href="#portfolio">
+        <span>01 // Portfolio Gallery</span>
+        <span class="material-symbols-outlined text-xs opacity-50">arrow_forward</span>
+      </a>
+      <a onclick="toggleMobileMenu()" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-neon-cyan py-2 flex items-center justify-between border-b border-white/5" href="#about">
+        <span>02 // The Craft & Gear</span>
+        <span class="material-symbols-outlined text-xs opacity-50">arrow_forward</span>
+      </a>
+      <a onclick="toggleMobileMenu()" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-neon-cyan py-2 flex items-center justify-between border-b border-white/5" href="#services">
+        <span>03 // Disciplines</span>
+        <span class="material-symbols-outlined text-xs opacity-50">arrow_forward</span>
+      </a>
+      <a onclick="toggleMobileMenu()" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-neon-cyan py-2 flex items-center justify-between border-b border-white/5" href="#packages">
+        <span>04 // Pricing Packages</span>
+        <span class="material-symbols-outlined text-xs opacity-50">arrow_forward</span>
+      </a>
+      <a onclick="toggleMobileMenu()" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-neon-cyan py-2 flex items-center justify-between border-b border-white/5" href="#reviews">
+        <span>05 // Client Reviews</span>
+        <span class="material-symbols-outlined text-xs opacity-50">arrow_forward</span>
+      </a>
+      <a onclick="toggleMobileMenu()" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-neon-cyan py-2 flex items-center justify-between border-b border-white/5" href="#faq">
+        <span>06 // FAQ</span>
+        <span class="material-symbols-outlined text-xs opacity-50">arrow_forward</span>
+      </a>
+
+      <div class="pt-4 flex flex-col gap-3">
+        <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full bg-gradient-to-r from-neon-cyan to-cyber-lime text-black font-mono font-bold text-xs py-3.5 rounded uppercase tracking-wider text-center btn-glow">
+          Instant Booking Inquiry
+        </button>
+        <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I%20would%20like%20to%20inquire%20about%20your%20photography%20services" target="_blank" class="w-full border border-white/20 text-white font-mono text-xs font-semibold py-3 rounded uppercase tracking-wider text-center flex items-center justify-center gap-2 hover:border-neon-cyan hover:text-neon-cyan transition-colors">
+          <span class="material-symbols-outlined text-sm text-emerald-400">chat</span>
+          WhatsApp Studio (+94 74 196 7050)
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="relative z-10 pt-20">
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
+    <!-- Hero Background Image & Gradient Overlays -->
+    <div class="absolute inset-0 z-0">
+      <img src="./studio.jpg" alt="Luminapix Studio Atmosphere" class="w-full h-full object-cover object-center opacity-35 filter brightness-75 scale-105 transform animate-pulse duration-1000"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-pitch-black via-pitch-black/80 to-pitch-black/50"></div>
+      <div class="absolute inset-0 bg-radial from-transparent via-pitch-black/60 to-pitch-black"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+      <!-- Luxury Studio Badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
+        <span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-white/90">
+          Precision Optics • Cinematic Storytelling
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[1.08] mb-6">
+        CAPTURE THE <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-white to-cyber-lime text-glow">
+          EXTRAORDINARY.
+        </span>
+      </h1>
+
+      <!-- Supporting Paragraph -->
+      <p class="font-body text-base sm:text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed mb-10 font-light">
+        We architect visual experiences using medium-format optical technology and film-grade color science. Every frame is a calculated masterpiece of light, shadow, and genuine emotion.
+      </p>
+
+      <!-- Hero Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md">
+        <a href="#portfolio" class="w-full sm:w-auto bg-neon-cyan text-black font-mono font-bold text-xs sm:text-sm px-8 py-4 rounded uppercase tracking-wider hover:bg-cyber-lime transition-colors duration-200 btn-glow text-center">
+          Explore Portfolio
+        </a>
+        <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I%20am%20interested%20in%20discussing%20a%20photography%20session" target="_blank" class="w-full sm:w-auto border border-white/20 hover:border-neon-cyan text-white hover:text-neon-cyan font-mono font-semibold text-xs sm:text-sm px-8 py-4 rounded uppercase tracking-wider backdrop-blur-md hover:bg-white/5 transition-all text-center flex items-center justify-center gap-2">
+          <span>Direct WhatsApp</span>
+          <span class="material-symbols-outlined text-sm">chat</span>
+        </a>
+      </div>
+
+      <!-- Quick Scroll Cue -->
+      <div class="mt-16 sm:mt-20 flex flex-col items-center gap-2 text-white/40">
+        <span class="font-mono text-[10px] uppercase tracking-widest">Scroll To Discover</span>
+        <span class="material-symbols-outlined animate-bounce text-sm text-neon-cyan">arrow_downward</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= METRICS & STATS STRIP ================= -->
+  <section class="border-y border-stroke-soft bg-surface/50 backdrop-blur-md relative z-10 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-white/5">
+      
+      <div class="flex flex-col items-center justify-center pt-4 lg:pt-0">
+        <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-1">
+          250<span class="text-neon-cyan">+</span>
+        </span>
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-on-surface-variant">Weddings Captured</span>
+      </div>
+
+      <div class="flex flex-col items-center justify-center pt-4 lg:pt-0">
+        <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-1">
+          85<span class="text-cyber-lime">+</span>
+        </span>
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-on-surface-variant">Concerts & Galas</span>
+      </div>
+
+      <div class="flex flex-col items-center justify-center pt-4 lg:pt-0">
+        <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-1">
+          48<span class="text-neon-cyan">h</span>
+        </span>
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-on-surface-variant">Sneak Peek Turnaround</span>
+      </div>
+
+      <div class="flex flex-col items-center justify-center pt-4 lg:pt-0">
+        <span class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-1">
+          100<span class="text-cyber-lime">%</span>
+        </span>
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-on-surface-variant">Cinematic Grade LUTs</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= ABOUT & VIDEO SHOWCASE ================= -->
+  <section id="about" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left Editorial Column -->
+      <div class="lg:col-span-6 flex flex-col justify-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft w-fit mb-6">
+          <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">THE LUMINAPIX APPROACH</span>
+        </div>
+
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+          Bridging classic artistry with futuristic optical precision.
+        </h2>
+
+        <p class="font-body text-base sm:text-lg text-on-surface-variant leading-relaxed mb-6 font-light">
+          We don't just take pictures; we engineer indelible memories. Our proprietary aesthetic blends the intimacy of documentary photojournalism with the punch, drama, and color accuracy of Hollywood cinematic film.
+        </p>
+
+        <p class="font-body text-sm sm:text-base text-on-surface-variant/80 leading-relaxed mb-8">
+          Every session is captured in ultra-wide 16-bit uncompressed RAW, retouched skin-tone-by-skin-tone, and mastered for timeless elegance on both luxury ultra-HD digital screens and museum-grade physical prints.
+        </p>
+
+        <!-- Tech Specifications Grid -->
+        <div class="grid grid-cols-2 gap-6 pt-6 border-t border-stroke-soft">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-1.5">CAMERA HARDWARE</p>
+            <p class="font-sans text-base font-semibold text-white">Full-Frame High-Resolution</p>
+            <p class="font-mono text-[11px] text-text-muted mt-0.5">Sony α Series & G-Master Primes</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs uppercase tracking-widest text-cyber-lime mb-1.5">POST PRODUCTION</p>
+            <p class="font-sans text-base font-semibold text-white">Hollywood Cinematic Grade</p>
+            <p class="font-mono text-[11px] text-text-muted mt-0.5">DaVinci Color Managed Workflow</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: User's Clean Cyber Video -->
+      <div class="lg:col-span-6 relative group">
+        <div class="absolute -inset-2 bg-gradient-to-r from-neon-cyan/25 to-cyber-lime/20 rounded-xl blur-2xl opacity-40 group-hover:opacity-75 transition duration-700"></div>
+
+        <div class="relative glass-card rounded-lg p-2.5 sm:p-3 overflow-hidden shadow-2xl">
+          <div class="relative w-full aspect-[4/3] rounded overflow-hidden bg-black">
+            <!-- Autoplay Clean Silent Video -->
+            <video 
+              id="matrix-hero-video"
+              src="./camera_video.mp4" 
+              autoplay 
+              loop 
+              muted 
+              playsinline 
+              preload="auto"
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            ></video>
+
+            <!-- Gradient Edges & Vignette -->
+            <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/70 via-transparent to-pitch-black/20 pointer-events-none"></div>
+
+            <!-- Sleek Tech Specs Tag -->
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono text-white/80 pointer-events-none">
+              <span class="bg-black/80 px-2.5 py-1 rounded border border-white/10 backdrop-blur">LUMINAPIX OPTICS // ACTIVE</span>
+              <span class="bg-black/80 px-2.5 py-1 rounded border border-white/10 backdrop-blur text-neon-cyan">4K CINEMA STREAM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= FILTERABLE PORTFOLIO GALLERY ================= -->
+  <section id="portfolio" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stroke-soft">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft mb-3">
+          <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">VISUAL ARCHIVE</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Curated Portfolio</h2>
+        <p class="font-body text-sm sm:text-base text-on-surface-variant mt-2 font-light">
+          Click any photograph to view in high-resolution cinema lightbox.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex items-center gap-2 flex-wrap font-mono text-xs uppercase tracking-wider">
+        <button onclick="filterGallery('all')" class="filter-btn active px-4 py-2 rounded bg-neon-cyan text-black font-semibold transition-all">All</button>
+        <button onclick="filterGallery('wedding')" class="filter-btn px-4 py-2 rounded bg-surface hover:bg-surface-card text-on-surface-variant hover:text-white border border-stroke-soft transition-all">Weddings</button>
+        <button onclick="filterGallery('concert')" class="filter-btn px-4 py-2 rounded bg-surface hover:bg-surface-card text-on-surface-variant hover:text-white border border-stroke-soft transition-all">Concerts</button>
+        <button onclick="filterGallery('birthday')" class="filter-btn px-4 py-2 rounded bg-surface hover:bg-surface-card text-on-surface-variant hover:text-white border border-stroke-soft transition-all">Birthdays</button>
+        <button onclick="filterGallery('event')" class="filter-btn px-4 py-2 rounded bg-surface hover:bg-surface-card text-on-surface-variant hover:text-white border border-stroke-soft transition-all">Corporate & Events</button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      
+      <!-- Wedding 1 -->
+      <div class="gallery-item group relative overflow-hidden rounded glass-card cursor-pointer" data-category="wedding" onclick="openLightbox('./wedding_light.jpg', 'Modern Avant-Garde Ceremony', 'Wedding', '85mm f/1.4 • 1/500s')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="./wedding_light.jpg" alt="Wedding Couple" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/90 via-pitch-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-neon-cyan">WEDDINGS</span>
+            <h4 class="font-sans text-lg font-bold text-white">Avant-Garde Ceremony</h4>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+            <span class="material-symbols-outlined text-sm">fullscreen</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Concert 1 -->
+      <div class="gallery-item group relative overflow-hidden rounded glass-card cursor-pointer" data-category="concert" onclick="openLightbox('./concert_light.jpg', 'Electric Teal Live Arena', 'Concert', '24-70mm f/2.8 • ISO 3200')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="./concert_light.jpg" alt="Live Concert Festival" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/90 via-pitch-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-cyber-lime">CONCERTS</span>
+            <h4 class="font-sans text-lg font-bold text-white">Electric Live Arena</h4>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white group-hover:bg-cyber-lime group-hover:text-black transition-colors">
+            <span class="material-symbols-outlined text-sm">fullscreen</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Birthday 1 -->
+      <div class="gallery-item group relative overflow-hidden rounded glass-card cursor-pointer" data-category="birthday" onclick="openLightbox('./birthday_light.jpg', 'Exclusive VIP Gala Birthday', 'Birthday', '50mm f/1.2 • Low-Light Prime')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="./birthday_light.jpg" alt="VIP Birthday Party" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/90 via-pitch-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-neon-cyan">BIRTHDAYS</span>
+            <h4 class="font-sans text-lg font-bold text-white">VIP Gala Celebration</h4>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+            <span class="material-symbols-outlined text-sm">fullscreen</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Event 1 -->
+      <div class="gallery-item group relative overflow-hidden rounded glass-card cursor-pointer" data-category="event" onclick="openLightbox('./event_light.jpg', 'Tech Keynote & Executive Summit', 'Corporate Event', '16-35mm f/2.8 Ultra-Wide')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="./event_light.jpg" alt="Corporate Summit" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/90 via-pitch-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-cyber-lime">EVENTS</span>
+            <h4 class="font-sans text-lg font-bold text-white">Executive Keynote Summit</h4>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white group-hover:bg-cyber-lime group-hover:text-black transition-colors">
+            <span class="material-symbols-outlined text-sm">fullscreen</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Wedding 2 (Editorial Soft) -->
+      <div class="gallery-item group relative overflow-hidden rounded glass-card cursor-pointer" data-category="wedding" onclick="openLightbox('./wedding_soft.jpg', 'Intimate Sunset Romance', 'Wedding', '135mm f/1.8 GM • Golden Hour')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="./wedding_soft.jpg" alt="Wedding Intimacy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/90 via-pitch-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-neon-cyan">WEDDINGS</span>
+            <h4 class="font-sans text-lg font-bold text-white">Intimate Sunset Romance</h4>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+            <span class="material-symbols-outlined text-sm">fullscreen</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Concert 2 (Festival Crowd) -->
+      <div class="gallery-item group relative overflow-hidden rounded glass-card cursor-pointer" data-category="concert" onclick="openLightbox('./concert_soft.jpg', 'Stadium Laser Euphoria', 'Concert', '70-200mm f/2.8 GM')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="./concert_soft.jpg" alt="Stadium Concert" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/90 via-pitch-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-widest text-cyber-lime">CONCERTS</span>
+            <h4 class="font-sans text-lg font-bold text-white">Stadium Laser Euphoria</h4>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white group-hover:bg-cyber-lime group-hover:text-black transition-colors">
+            <span class="material-symbols-outlined text-sm">fullscreen</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Direct Instagram / More Work Link -->
+    <div class="mt-12 text-center">
+      <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20can%20you%20share%20your%20full%20portfolio%20drive?" target="_blank" class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-neon-cyan hover:text-white transition-colors border-b border-neon-cyan/40 pb-1">
+        <span>Request Full High-Res Master Portfolio On Drive</span>
+        <span class="material-symbols-outlined text-xs">open_in_new</span>
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- ================= DISCIPLINES (SERVICES) BENTO ================= -->
+  <section id="services" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stroke-soft">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft mb-3">
+        <span class="font-mono text-xs uppercase tracking-widest text-cyber-lime">CORE EXPERTISE</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Specialized Disciplines</h2>
+      <p class="font-body text-sm sm:text-base text-on-surface-variant mt-3 font-light">
+        Engineered workflows dedicated to each unique genre of high-stakes photography.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[290px] sm:auto-rows-[340px] md:auto-rows-[380px]">
+      
+      <!-- Weddings (Large Card - 8 cols) -->
+      <div onclick="openBookingModal('Wedding')" class="group relative overflow-hidden rounded-lg glass-card md:col-span-8 flex flex-col justify-end p-6 sm:p-8 cursor-pointer transition-all duration-300">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-55 group-hover:opacity-75" style="background-image: url('./wedding_light.jpg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/95 via-pitch-black/40 to-transparent"></div>
+        <div class="relative z-10 flex justify-between items-end w-full">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">LUXURY DESTINATION & HOTEL</span>
+            <h3 class="font-display text-2xl sm:text-3xl text-white font-bold mb-1">Weddings</h3>
+            <p class="font-body text-xs sm:text-sm text-on-surface-variant max-w-md hidden sm:block">
+              Emotion, poise, and grandeur immortalized with gentle candid mastery and editorial bridal portraits.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded bg-neon-cyan text-black font-mono text-xs font-bold flex items-center gap-1 group-hover:bg-white transition-colors">
+            INQUIRE <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Concerts (Vertical Card - 4 cols) -->
+      <div onclick="openBookingModal('Concert')" class="group relative overflow-hidden rounded-lg glass-card md:col-span-4 flex flex-col justify-end p-6 sm:p-8 cursor-pointer transition-all duration-300">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-55 group-hover:opacity-75" style="background-image: url('./concert_light.jpg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/95 via-pitch-black/40 to-transparent"></div>
+        <div class="relative z-10 flex justify-between items-end w-full">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-cyber-lime">HIGH-ENERGY ARENA</span>
+            <h3 class="font-display text-2xl sm:text-3xl text-white font-bold mb-1">Concerts</h3>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-cyber-lime text-black flex items-center justify-center">
+            <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Birthdays (Square - 6 cols) -->
+      <div onclick="openBookingModal('Birthday')" class="group relative overflow-hidden rounded-lg glass-card md:col-span-6 flex flex-col justify-end p-6 sm:p-8 cursor-pointer transition-all duration-300">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-55 group-hover:opacity-75" style="background-image: url('./birthday_light.jpg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/95 via-pitch-black/40 to-transparent"></div>
+        <div class="relative z-10 flex justify-between items-end w-full">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">PRIVATE GALAS & MILESTONES</span>
+            <h3 class="font-display text-2xl sm:text-3xl text-white font-bold mb-1">Birthdays</h3>
+            <p class="font-body text-xs sm:text-sm text-on-surface-variant hidden sm:block">
+              VIP birthday galas, milestones, and high-glamour celebrations captured with modern darkroom flair.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded bg-white/10 hover:bg-neon-cyan hover:text-black text-white font-mono text-xs font-semibold flex items-center gap-1 transition-colors">
+            DETAILS <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Events (Square - 6 cols) -->
+      <div onclick="openBookingModal('Corporate Event')" class="group relative overflow-hidden rounded-lg glass-card md:col-span-6 flex flex-col justify-end p-6 sm:p-8 cursor-pointer transition-all duration-300">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-55 group-hover:opacity-75" style="background-image: url('./event_light.jpg')"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-pitch-black/95 via-pitch-black/40 to-transparent"></div>
+        <div class="relative z-10 flex justify-between items-end w-full">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-cyber-lime">CORPORATE & SUMMITS</span>
+            <h3 class="font-display text-2xl sm:text-3xl text-white font-bold mb-1">Corporate Events</h3>
+            <p class="font-body text-xs sm:text-sm text-on-surface-variant hidden sm:block">
+              Brand activations, keynote summits, tech conferences, and executive portraits.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded bg-white/10 hover:bg-cyber-lime hover:text-black text-white font-mono text-xs font-semibold flex items-center gap-1 transition-colors">
+            DETAILS <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= STUDIO STANDARDS & FEATURES ================= -->
+  <section class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stroke-soft">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft mb-3">
+        <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">WHY LUMINAPIX</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">The Studio Standards</h2>
+      <p class="font-body text-sm sm:text-base text-on-surface-variant mt-3 font-light">
+        The technical foundation and client guarantees that distinguish Luminapix from standard photographers.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Feature 1 -->
+      <div class="glass-card p-6 sm:p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan mb-5">
+            <span class="material-symbols-outlined text-2xl">camera</span>
+          </div>
+          <h4 class="font-sans text-lg font-bold text-white mb-2">Prime Optics Only</h4>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed font-light">
+            We shoot exclusively with ultra-fast f/1.2 & f/1.4 prime optics for creamy bokeh and unmatched low-light sharpness.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-[11px] text-neon-cyan">
+          ZERO GRAIN COMPROMISE
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="glass-card p-6 sm:p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-cyber-lime/10 border border-cyber-lime/30 flex items-center justify-center text-cyber-lime mb-5">
+            <span class="material-symbols-outlined text-2xl">palette</span>
+          </div>
+          <h4 class="font-sans text-lg font-bold text-white mb-2">Custom Color Science</h4>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed font-light">
+            Every collection is hand-graded using custom film emulation profiles tailored precisely to your venue's ambient palette.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-[11px] text-cyber-lime">
+          HOLLYWOOD COLOR PIPELINE
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="glass-card p-6 sm:p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan mb-5">
+            <span class="material-symbols-outlined text-2xl">flight</span>
+          </div>
+          <h4 class="font-sans text-lg font-bold text-white mb-2">Aerial Drone Cinema</h4>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed font-light">
+            Licensed 4K drone cinematography captures breathtaking establishing vistas of your venue and monumental crowd moments.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-[11px] text-neon-cyan">
+          BIRD'S-EYE PERSPECTIVE
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="glass-card p-6 sm:p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-cyber-lime/10 border border-cyber-lime/30 flex items-center justify-center text-cyber-lime mb-5">
+            <span class="material-symbols-outlined text-2xl">cloud_sync</span>
+          </div>
+          <h4 class="font-sans text-lg font-bold text-white mb-2">Encrypted 4K Gallery</h4>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed font-light">
+            Private, password-protected online gallery hosted on global CDNs for lightning-fast downloads and easy family sharing.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-[11px] text-cyber-lime">
+          10-YEAR SECURE ARCHIVE
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= PRICING & INVESTMENT ================= -->
+  <section id="packages" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stroke-soft">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft mb-3">
+        <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">INVESTMENT TIERS</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Transparent Packages</h2>
+      <p class="font-body text-sm sm:text-base text-on-surface-variant mt-3 font-light">
+        Custom bespoke arrangements available upon direct consultation.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Package 1: Wedding -->
+      <div class="glass-card rounded-lg p-6 sm:p-7 flex flex-col justify-between relative border-neon-cyan/40 shadow-2xl">
+        <div class="absolute -top-3 right-6 bg-gradient-to-r from-neon-cyan to-cyber-lime text-black font-mono text-[10px] font-extrabold uppercase px-3 py-1 rounded shadow-md">
+          MOST REQUESTED
+        </div>
+        <div>
+          <div class="w-full h-36 rounded overflow-hidden mb-6">
+            <img src="./wedding_light.jpg" alt="Wedding Package" class="w-full h-full object-cover"/>
+          </div>
+          <h3 class="font-sans text-2xl font-bold text-white mb-1">The Royal Wedding</h3>
+          <p class="font-mono text-xs text-on-surface-variant mb-4">Complete Nuptial Coverage</p>
+          <div class="mb-6">
+            <span class="font-display text-3xl font-extrabold text-white">LKR 150,000</span>
+            <span class="font-mono text-xs text-text-muted"> / starting</span>
+          </div>
+          <ul class="space-y-3 font-body text-xs sm:text-sm text-on-surface-variant mb-8">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>Full Day Nuptial & Reception Coverage</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>Dual Senior Masters of Photography</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>4K Aerial Drone Coverage Included</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>48-Hour Rapid Sneak Peek Delivery</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>Private Encrypted Online Cloud Gallery</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I%20would%20like%20to%20book/inquire%20about%20the%20Wedding%20Photography%20Package" target="_blank" class="w-full bg-neon-cyan text-black font-mono font-bold text-xs py-3.5 rounded uppercase tracking-wider text-center hover:bg-cyber-lime transition-colors btn-glow block">
+          Inquire Wedding Date
+        </a>
+      </div>
+
+      <!-- Package 2: Corporate Event -->
+      <div class="glass-card rounded-lg p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="w-full h-36 rounded overflow-hidden mb-6">
+            <img src="./event_light.jpg" alt="Event Package" class="w-full h-full object-cover"/>
+          </div>
+          <h3 class="font-sans text-2xl font-bold text-white mb-1">Corporate Summit</h3>
+          <p class="font-mono text-xs text-on-surface-variant mb-4">Brand Activations & Keynotes</p>
+          <div class="mb-6">
+            <span class="font-display text-3xl font-extrabold text-white">LKR 80,000</span>
+            <span class="font-mono text-xs text-text-muted"> / starting</span>
+          </div>
+          <ul class="space-y-3 font-body text-xs sm:text-sm text-on-surface-variant mb-8">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>4 to 6 Hours High-Profile Coverage</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>Rapid 48-Hour Press-Ready Delivery</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>Executive Headshots & Candid Keynotes</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>Full Commercial & Editorial Rights</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I%20would%20like%20to%20book/inquire%20about%20the%20Corporate%20Event%20Package" target="_blank" class="w-full border border-stroke-soft hover:border-cyber-lime text-white hover:text-cyber-lime font-mono font-bold text-xs py-3.5 rounded uppercase tracking-wider text-center transition-colors block">
+          Inquire Corporate
+        </a>
+      </div>
+
+      <!-- Package 3: Concert -->
+      <div class="glass-card rounded-lg p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="w-full h-36 rounded overflow-hidden mb-6">
+            <img src="./concert_light.jpg" alt="Concert Package" class="w-full h-full object-cover"/>
+          </div>
+          <h3 class="font-sans text-2xl font-bold text-white mb-1">Live Arena & Gig</h3>
+          <p class="font-mono text-xs text-on-surface-variant mb-4">Festivals, DJ Sets & Tours</p>
+          <div class="mb-6">
+            <span class="font-display text-3xl font-extrabold text-white">LKR 100,000</span>
+            <span class="font-mono text-xs text-text-muted"> / starting</span>
+          </div>
+          <ul class="space-y-3 font-body text-xs sm:text-sm text-on-surface-variant mb-8">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>Full Event & Backstage VIP Access</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>Low-Light Prime Telephoto & Wide Setup</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>Same-Night Social Media Quick Reel Assets</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-neon-cyan">check</span>High-Octane Laser & Stage Edits</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I%20would%20like%20to%20book/inquire%20about%20the%20Concert%20Photography%20Package" target="_blank" class="w-full border border-stroke-soft hover:border-neon-cyan text-white hover:text-neon-cyan font-mono font-bold text-xs py-3.5 rounded uppercase tracking-wider text-center transition-colors block">
+          Inquire Concert
+        </a>
+      </div>
+
+      <!-- Package 4: Birthday -->
+      <div class="glass-card rounded-lg p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="w-full h-36 rounded overflow-hidden mb-6">
+            <img src="./birthday_light.jpg" alt="Birthday Package" class="w-full h-full object-cover"/>
+          </div>
+          <h3 class="font-sans text-2xl font-bold text-white mb-1">VIP Milestone Gala</h3>
+          <p class="font-mono text-xs text-on-surface-variant mb-4">Birthdays & Private Soirées</p>
+          <div class="mb-6">
+            <span class="font-display text-3xl font-extrabold text-white">LKR 60,000</span>
+            <span class="font-mono text-xs text-text-muted"> / starting</span>
+          </div>
+          <ul class="space-y-3 font-body text-xs sm:text-sm text-on-surface-variant mb-8">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>3 to 4 Hours Dedicated Coverage</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>Editorial Beauty & Skin Tone Retouching</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>Candid Atmosphere & Family Formals</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-cyber-lime">check</span>Digital High-Resolution Master Album</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I%20would%20like%20to%20book/inquire%20about%20the%20Birthday%20Photography%20Package" target="_blank" class="w-full border border-stroke-soft hover:border-cyber-lime text-white hover:text-cyber-lime font-mono font-bold text-xs py-3.5 rounded uppercase tracking-wider text-center transition-colors block">
+          Inquire Birthday
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= TESTIMONIALS & CLIENT REVIEWS ================= -->
+  <section id="reviews" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stroke-soft">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft mb-3">
+        <span class="font-mono text-xs uppercase tracking-widest text-champagne-gold">TESTIMONIALS</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Praise From Our Clients</h2>
+      <p class="font-body text-sm sm:text-base text-on-surface-variant mt-3 font-light">
+        Real stories from couples, brand founders, and festival producers.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Review 1 -->
+      <div class="glass-card p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="flex text-champagne-gold mb-4 text-sm">
+            ★★★★★
+          </div>
+          <p class="font-body text-sm sm:text-base text-white/90 italic leading-relaxed mb-6 font-light">
+            "The cinematic lighting and candid moments Luminapix captured at our Shangri-La wedding left our entire family in tears. They blended in effortlessly and their 48-hour sneak peek was pure movie magic."
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+          <div>
+            <h5 class="font-sans text-sm font-bold text-white">Shenali & Kasun Perera</h5>
+            <p class="font-mono text-[11px] text-text-muted">Destination Wedding at Shangri-La</p>
+          </div>
+          <span class="material-symbols-outlined text-neon-cyan/60">verified</span>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="glass-card p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="flex text-champagne-gold mb-4 text-sm">
+            ★★★★★
+          </div>
+          <p class="font-body text-sm sm:text-base text-white/90 italic leading-relaxed mb-6 font-light">
+            "Without question the best live event photography team in the island. Our arena festival lasers and low-light artist close-ups looked like international Billboard covers."
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+          <div>
+            <h5 class="font-sans text-sm font-bold text-white">Pulse Productions</h5>
+            <p class="font-mono text-[11px] text-text-muted">Live Arena Music Festival</p>
+          </div>
+          <span class="material-symbols-outlined text-neon-cyan/60">verified</span>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="glass-card p-7 rounded-lg flex flex-col justify-between">
+        <div>
+          <div class="flex text-champagne-gold mb-4 text-sm">
+            ★★★★★
+          </div>
+          <p class="font-body text-sm sm:text-base text-white/90 italic leading-relaxed mb-6 font-light">
+            "Discreet, deeply professional, and the color grading on our 50th corporate anniversary summit was world-class. Our leadership board was thoroughly impressed."
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+          <div>
+            <h5 class="font-sans text-sm font-bold text-white">Dilshan Mendis</h5>
+            <p class="font-mono text-[11px] text-text-muted">VP Communications, Apex Holdings</p>
+          </div>
+          <span class="material-symbols-outlined text-neon-cyan/60">verified</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= FREQUENTLY ASKED QUESTIONS ================= -->
+  <section id="faq" class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-stroke-soft">
+    
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/5 border border-stroke-soft mb-3">
+        <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan">CLARITY</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="space-y-4">
+      
+      <!-- FAQ 1 -->
+      <div class="glass-card rounded-lg overflow-hidden border border-white/10">
+        <button onclick="toggleFaq(1)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center focus:outline-none">
+          <span class="font-sans text-base sm:text-lg font-semibold text-white">How far in advance should we reserve our date?</span>
+          <span id="faq-icon-1" class="material-symbols-outlined text-neon-cyan transition-transform duration-300">expand_more</span>
+        </button>
+        <div id="faq-ans-1" class="hidden px-5 sm:px-6 pb-6 text-sm text-on-surface-variant font-light leading-relaxed border-t border-white/5 pt-4">
+          Due to high demand and our commitment to dedicating full attention to each client, we recommend booking weddings 4 to 8 months in advance. Corporate summits and birthdays can typically be accommodated with 2 to 4 weeks' notice, subject to calendar availability.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="glass-card rounded-lg overflow-hidden border border-white/10">
+        <button onclick="toggleFaq(2)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center focus:outline-none">
+          <span class="font-sans text-base sm:text-lg font-semibold text-white">Do you travel for destination shoots outside Colombo?</span>
+          <span id="faq-icon-2" class="material-symbols-outlined text-neon-cyan transition-transform duration-300">expand_more</span>
+        </button>
+        <div id="faq-ans-2" class="hidden px-5 sm:px-6 pb-6 text-sm text-on-surface-variant font-light leading-relaxed border-t border-white/5 pt-4">
+          Yes! We frequently cover destination weddings and high-profile shoots across Sri Lanka (Bentota, Galle, Kandy, Nuwara Eliya, Tangalle) as well as international destinations (Maldives, Dubai, Singapore). Travel and accommodation arrangements are quoted transparently.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="glass-card rounded-lg overflow-hidden border border-white/10">
+        <button onclick="toggleFaq(3)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center focus:outline-none">
+          <span class="font-sans text-base sm:text-lg font-semibold text-white">When will we receive our photos?</span>
+          <span id="faq-icon-3" class="material-symbols-outlined text-neon-cyan transition-transform duration-300">expand_more</span>
+        </button>
+        <div id="faq-ans-3" class="hidden px-5 sm:px-6 pb-6 text-sm text-on-surface-variant font-light leading-relaxed border-t border-white/5 pt-4">
+          We provide a curated "Sneak Peek" collection of 30-50 fully graded master images within 48 hours so you can share and celebrate immediately. The complete high-resolution cloud gallery is delivered within 3 to 4 weeks.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="glass-card rounded-lg overflow-hidden border border-white/10">
+        <button onclick="toggleFaq(4)" class="w-full p-5 sm:p-6 text-left flex justify-between items-center focus:outline-none">
+          <span class="font-sans text-base sm:text-lg font-semibold text-white">Can we customize our photography package?</span>
+          <span id="faq-icon-4" class="material-symbols-outlined text-neon-cyan transition-transform duration-300">expand_more</span>
+        </button>
+        <div id="faq-ans-4" class="hidden px-5 sm:px-6 pb-6 text-sm text-on-surface-variant font-light leading-relaxed border-t border-white/5 pt-4">
+          Absolutely. Every client's vision is unique. You can add extra photographers, pre-shoot conceptual sessions, Italian leather albums, drone reels, or extended hours. Simply contact our team via WhatsApp to tailor your package.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= FINAL CALL TO ACTION ================= -->
+  <section class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="relative glass-card rounded-2xl p-8 sm:p-14 overflow-hidden text-center border-neon-cyan/30">
+      
+      <div class="absolute -top-32 -right-32 w-80 h-80 bg-neon-cyan/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-cyber-lime/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <span class="font-mono text-xs uppercase tracking-[0.25em] text-neon-cyan mb-3 block">LET'S CREATE HISTORY</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">
+          Ready to immortalize your next defining moment?
+        </h2>
+        <p class="font-body text-sm sm:text-base text-on-surface-variant mb-8 font-light">
+          Dates for the upcoming season are currently filling rapidly. Reserve your consultation with our lead creatives today.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openBookingModal()" class="w-full sm:w-auto bg-gradient-to-r from-neon-cyan to-cyber-lime text-black font-mono font-bold text-sm px-8 py-4 rounded uppercase tracking-wider btn-glow">
+            Book Consultation
+          </button>
+          <a href="https://wa.me/94741967050?text=Hi%20Luminapix,%20I'd%20like%20to%20check%20availability%20for%20my%20event" target="_blank" class="w-full sm:w-auto border border-white/20 hover:border-white text-white font-mono text-sm px-8 py-4 rounded uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+            <span>WhatsApp Direct</span>
+            <span class="material-symbols-outlined text-sm">chat</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-stroke-soft bg-pitch-black py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    
+    <div class="flex items-center gap-3">
+      <img alt="LUMINAPIX Logo" class="h-9 w-9 object-contain rounded-full shadow-md" src="./logo.png"/>
+      <div>
+        <span class="font-display text-xl font-bold tracking-wider text-white">LUMINAPIX</span>
+        <span class="block font-mono text-[9px] text-text-muted uppercase tracking-widest">Precision Optics Studio</span>
+      </div>
+    </div>
+
+    <p class="font-mono text-xs text-on-surface-variant text-center md:text-left">
+      © 2024 LUMINAPIX PHOTOGRAPHY STUDIO. ALL RIGHTS RESERVED.
+    </p>
+
+    <div class="flex gap-6 items-center font-mono text-xs text-on-surface-variant">
+      <a class="hover:text-neon-cyan transition-colors" href="https://wa.me/94741967050" target="_blank">WhatsApp</a>
+      <a class="hover:text-neon-cyan transition-colors" href="#portfolio">Portfolio</a>
+      <a class="hover:text-neon-cyan transition-colors" href="#packages">Pricing</a>
+      <a class="hover:text-neon-cyan transition-colors" href="#about">Studio</a>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ================= FULLSCREEN LIGHTBOX MODAL ================= -->
+<div id="lightboxModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-2xl opacity-0 pointer-events-none transition-opacity duration-300 p-4 sm:p-8">
+  <button onclick="closeLightbox()" class="absolute top-5 right-5 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-neon-cyan hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-lg" aria-label="Close Lightbox">
+    <span class="material-symbols-outlined text-2xl">close</span>
+  </button>
+
+  <div class="relative max-w-5xl max-h-[88vh] flex flex-col items-center">
+    <img id="lightbox-img" src="" alt="Enlarged Artwork" class="max-h-[75vh] w-auto max-w-full object-contain rounded shadow-2xl border border-white/10 mb-4"/>
+    <div class="text-center">
+      <span id="lightbox-category" class="font-mono text-[10px] sm:text-xs text-neon-cyan uppercase tracking-widest block mb-1"></span>
+      <h3 id="lightbox-title" class="font-sans text-lg sm:text-xl font-bold text-white mb-1"></h3>
+      <p id="lightbox-meta" class="font-mono text-xs text-text-muted"></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= INTERACTIVE BOOKING & INQUIRY MODAL ================= -->
+<div id="bookingModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-3 sm:p-6">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/85 backdrop-blur-md" onclick="closeBookingModal()"></div>
+  
+  <!-- Modal Content -->
+  <div class="relative w-full max-w-2xl bg-[#141414] border border-stroke-soft p-6 sm:p-10 shadow-2xl rounded-xl z-10 max-h-[92vh] overflow-y-auto">
+    
+    <button onclick="closeBookingModal()" class="sticky top-0 float-right z-30 bg-surface/90 text-on-surface-variant hover:text-white p-1 rounded-full backdrop-blur border border-white/10 transition-colors shadow-lg cursor-pointer" aria-label="Close modal">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    
+    <div class="clear-both mb-6 text-center sm:text-left">
+      <span class="font-mono text-xs uppercase tracking-widest text-neon-cyan block mb-1">DIRECT INQUIRY</span>
+      <h2 class="font-display text-2xl sm:text-3xl text-white font-bold">Reserve Your Session</h2>
+      <p class="font-body text-xs sm:text-sm text-on-surface-variant mt-1 font-light">
+        Fill out your event details below to initiate an instant WhatsApp reservation.
+      </p>
+    </div>
+
+    <!-- Interactive Form -->
+    <form onsubmit="handleInquirySubmit(event)" class="space-y-4 font-sans">
+      <div>
+        <label class="block font-mono text-xs text-white/80 uppercase tracking-wider mb-1.5">Your Name *</label>
+        <input id="inq-name" type="text" required placeholder="Kasun Perera" class="w-full bg-surface border border-stroke-soft rounded px-4 py-3 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"/>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono text-xs text-white/80 uppercase tracking-wider mb-1.5">WhatsApp / Phone *</label>
+          <input id="inq-phone" type="tel" required placeholder="+94 7X XXX XXXX" class="w-full bg-surface border border-stroke-soft rounded px-4 py-3 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"/>
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-white/80 uppercase tracking-wider mb-1.5">Discipline / Event Type</label>
+          <select id="inq-type" class="w-full bg-surface border border-stroke-soft rounded px-4 py-3 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors">
+            <option value="Wedding">Wedding Ceremony & Reception</option>
+            <option value="Concert">Arena Concert / Live Music</option>
+            <option value="Birthday">VIP Birthday Gala</option>
+            <option value="Corporate Event">Corporate Summit / Keynote</option>
+            <option value="Studio Portrait">Studio / Fashion Editorial</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono text-xs text-white/80 uppercase tracking-wider mb-1.5">Tentative Date</label>
+          <input id="inq-date" type="date" class="w-full bg-surface border border-stroke-soft rounded px-4 py-3 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"/>
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-white/80 uppercase tracking-wider mb-1.5">Estimated Venue / Location</label>
+          <input id="inq-venue" type="text" placeholder="e.g. Shangri-La / Colombo" class="w-full bg-surface border border-stroke-soft rounded px-4 py-3 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"/>
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-mono text-xs text-white/80 uppercase tracking-wider mb-1.5">Notes or Special Requirements</label>
+        <textarea id="inq-notes" rows="3" placeholder="Tell us about your guest count, visual inspirations, drone requirements..." class="w-full bg-surface border border-stroke-soft rounded px-4 py-3 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"></textarea>
+      </div>
+
+      <button type="submit" class="w-full bg-gradient-to-r from-neon-cyan to-cyber-lime text-black font-mono font-bold text-sm py-4 rounded uppercase tracking-wider btn-glow flex items-center justify-center gap-2 mt-2">
+        <span>Proceed To Instant WhatsApp Booking</span>
+        <span class="material-symbols-outlined text-lg">chat</span>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+  // Mobile Navigation Drawer Toggle
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    if (!menu) return;
+    const isHidden = menu.classList.contains('hidden');
+    if (isHidden) {
+      menu.classList.remove('hidden');
+      if (icon) icon.innerText = 'close';
+    } else {
+      menu.classList.add('hidden');
+      if (icon) icon.innerText = 'menu';
+    }
+  }
+
+  // Booking Modal
+  function openBookingModal(preselectType) {
+    const modal = document.getElementById('bookingModal');
+    if (modal) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = 'hidden';
+      if (preselectType) {
+        const select = document.getElementById('inq-type');
+        if (select) select.value = preselectType;
+      }
+    }
+  }
+
+  function closeBookingModal() {
+    const modal = document.getElementById('bookingModal');
+    if (modal) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Form Submission -> Direct WhatsApp
+  function handleInquirySubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('inq-name').value.trim();
+    const phone = document.getElementById('inq-phone').value.trim();
+    const type = document.getElementById('inq-type').value;
+    const date = document.getElementById('inq-date').value || 'To Be Finalized';
+    const venue = document.getElementById('inq-venue').value.trim() || 'Not Specified';
+    const notes = document.getElementById('inq-notes').value.trim();
+
+    let text = `*NEW INQUIRY - LUMINAPIX STUDIO*\n\n`;
+    text += `👤 *Client Name:* ${name}\n`;
+    text += `📞 *Phone:* ${phone}\n`;
+    text += `📸 *Event Discipline:* ${type}\n`;
+    text += `📅 *Date:* ${date}\n`;
+    text += `📍 *Venue/City:* ${venue}\n`;
+    if (notes) text += `📝 *Notes:* ${notes}\n`;
+
+    const encoded = encodeURIComponent(text);
+    window.open(`https://wa.me/94741967050?text=${encoded}`, '_blank');
+    closeBookingModal();
+  }
+
+  // Gallery Filter Tabs
+  function filterGallery(category) {
+    const items = document.querySelectorAll('.gallery-item');
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    buttons.forEach(btn => {
+      btn.classList.remove('bg-neon-cyan', 'text-black', 'font-semibold');
+      btn.classList.add('bg-surface', 'text-on-surface-variant', 'border-stroke-soft');
+    });
+
+    if (event && event.currentTarget) {
+      event.currentTarget.classList.remove('bg-surface', 'text-on-surface-variant', 'border-stroke-soft');
+      event.currentTarget.classList.add('bg-neon-cyan', 'text-black', 'font-semibold');
+    }
+
+    items.forEach(item => {
+      const itemCat = item.getAttribute('data-category');
+      if (category === 'all' || itemCat === category) {
+        item.classList.remove('hidden-item');
+      } else {
+        item.classList.add('hidden-item');
+      }
+    });
+  }
+
+  // Lightbox Modal
+  function openLightbox(src, title, category, meta) {
+    const modal = document.getElementById('lightboxModal');
+    const img = document.getElementById('lightbox-img');
+    const titleEl = document.getElementById('lightbox-title');
+    const catEl = document.getElementById('lightbox-category');
+    const metaEl = document.getElementById('lightbox-meta');
+
+    if (!modal || !img) return;
+    img.src = src;
+    if (titleEl) titleEl.innerText = title;
+    if (catEl) catEl.innerText = category;
+    if (metaEl) metaEl.innerText = meta;
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    if (modal) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // FAQ Accordion
+  function toggleFaq(index) {
+    const ans = document.getElementById(`faq-ans-${index}`);
+    const icon = document.getElementById(`faq-icon-${index}`);
+    if (!ans) return;
+
+    const isHidden = ans.classList.contains('hidden');
+    if (isHidden) {
+      ans.classList.remove('hidden');
+      if (icon) icon.style.transform = 'rotate(180deg)';
+    } else {
+      ans.classList.add('hidden');
+      if (icon) icon.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  // Keyboard Shortcuts (Escape to close modals)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeBookingModal();
+      closeLightbox();
+    }
+  });
+
+  // Ensure video autoplays smoothly in loop
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('matrix-hero-video');
+    if (video) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+  });
+</script>
+
+</body>
+</html>

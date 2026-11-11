@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LUMINAPIX | Photography Studio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@200,0,0,24" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#030303',
+                        surface: '#0a0a0a',
+                        'surface-light': '#121212',
+                        primary: '#ffffff',
+                        secondary: '#a1a1aa',
+                        border: 'rgba(255, 255, 255, 0.08)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    spacing: {
+                        'section': '180px',
+                    },
+                    letterSpacing: {
+                        'tighter': '-0.04em',
+                        'widest': '0.15em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .img-zoom-container {
+            overflow: hidden;
+        }
+
+        .img-zoom {
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-zoom-container:hover .img-zoom {
+            transform: scale(1.05);
+        }
+
+        /* Nav blur */
+        .glass-nav {
+            background: rgba(3, 3, 3, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom selection */
+        ::selection {
+            background: #ffffff;
+            color: #030303;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-background">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center group-hover:border-primary transition-colors duration-500">
+                    <div class="w-2 h-2 bg-primary rounded-full"></div>
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight">LUMINAPIX</span>
+            </a>
+            
+            <div class="hidden md:flex gap-10 items-center">
+                <a class="text-sm font-medium tracking-widest uppercase text-secondary hover:text-primary transition-colors duration-300" href="index.html">Home</a>
+                <a class="text-sm font-medium tracking-widest uppercase text-secondary hover:text-primary transition-colors duration-300" href="portfolio.html">Portfolio</a>
+                <a class="text-sm font-medium tracking-widest uppercase text-secondary hover:text-primary transition-colors duration-300" href="about.html">Studio</a>
+                <a class="text-sm font-medium tracking-widest uppercase text-secondary hover:text-primary transition-colors duration-300" href="contact.html">Contact</a>
+            </div>
+
+            <button class="hidden md:block border border-primary/20 hover:border-primary text-sm tracking-widest uppercase px-6 py-2.5 rounded-full transition-all duration-300">
+                Book Inquiry
+            </button>
+
+            <button class="md:hidden text-primary">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen flex flex-col justify-center items-center text-center px-6">
+            <!-- Background Video/Image simulation -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-cover bg-center opacity-50 img-zoom w-full h-full transform scale-100" style="background-image: url('https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2813&auto=format&fit=crop'); animation: slowZoom 20s infinite alternate ease-in-out;"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/80"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 max-w-5xl mx-auto mt-20">
+                <p class="reveal text-secondary text-xs md:text-sm tracking-[0.3em] uppercase mb-6 font-medium">Est. 2024 &mdash; Global</p>
+                <h1 class="reveal font-display text-5xl md:text-8xl lg:text-[10rem] font-bold leading-[0.85] tracking-tighter mb-8">
+                    VISUAL<br/><span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">POETRY</span>
+                </h1>
+                <p class="reveal text-secondary max-w-xl mx-auto text-lg md:text-xl font-light leading-relaxed mb-12">
+                    A premium photography studio specializing in cinematic aesthetics, architectural precision, and emotive storytelling.
+                </p>
+                <div class="reveal">
+                    <a href="#portfolio" class="inline-flex items-center gap-3 border-b border-primary/30 pb-2 hover:border-primary transition-colors duration-300">
+                        <span class="text-sm tracking-widest uppercase font-medium">Explore Works</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 reveal">
+                <div class="w-[1px] h-16 bg-gradient-to-b from-primary/50 to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="py-section px-6 md:px-12 bg-background">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="order-2 lg:order-1 img-zoom-container rounded-sm overflow-hidden aspect-[4/5] reveal">
+                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=2574&auto=format&fit=crop" class="w-full h-full object-cover img-zoom grayscale hover:grayscale-0 transition-all duration-700" alt="Studio setup">
+                </div>
+                <div class="order-1 lg:order-2 reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-10 h-[1px] bg-primary/30"></div>
+                        <span class="text-xs tracking-widest uppercase text-secondary">The Studio</span>
+                    </div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
+                        Elevating reality through <br/> a cinematic lens.
+                    </h2>
+                    <p class="text-secondary text-lg leading-relaxed mb-10 font-light max-w-md">
+                        We strip away the unnecessary to focus on raw emotion and profound aesthetics. Using state-of-the-art medium format systems, our work transcends traditional photography to become timeless art.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 border-t border-border pt-10">
+                        <div>
+                            <p class="text-3xl font-display font-semibold mb-2">12+</p>
+                            <p class="text-xs tracking-widest uppercase text-secondary">Years Expr.</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-display font-semibold mb-2">250</p>
+                            <p class="text-xs tracking-widest uppercase text-secondary">Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Preview (Bento Grid) -->
+        <section id="portfolio" class="py-section px-6 md:px-12 bg-surface">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-[1px] bg-primary/30"></div>
+                            <span class="text-xs tracking-widest uppercase text-secondary">Selected Works</span>
+                        </div>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight">Disciplines</h2>
+                    </div>
+                    <a href="portfolio.html" class="hidden md:inline-flex items-center gap-2 border-b border-primary/30 pb-1 hover:border-primary transition-colors text-sm tracking-widest uppercase mt-8 md:mt-0">
+                        View Full Archive
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[400px]">
+                    
+                    <!-- Item 1 (Large) -->
+                    <a href="#" class="group relative img-zoom-container md:col-span-8 overflow-hidden rounded-sm reveal">
+                        <div class="absolute inset-0 bg-cover bg-center img-zoom opacity-80 group-hover:opacity-100" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2938&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 flex justify-between items-end">
+                            <div>
+                                <p class="text-xs tracking-widest uppercase text-secondary mb-3">01 // Elegance</p>
+                                <h3 class="font-display text-3xl font-bold tracking-tight group-hover:translate-x-2 transition-transform duration-500">Weddings & Elopements</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Item 2 (Vertical) -->
+                    <a href="#" class="group relative img-zoom-container md:col-span-4 overflow-hidden rounded-sm reveal" style="transition-delay: 100ms;">
+                        <div class="absolute inset-0 bg-cover bg-center img-zoom opacity-80 group-hover:opacity-100" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a1a2a5f5280c?q=80&w=2940&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8">
+                            <p class="text-xs tracking-widest uppercase text-secondary mb-3">02 // Energy</p>
+                            <h3 class="font-display text-2xl font-bold tracking-tight group-hover:translate-x-2 transition-transform duration-500">Live Concerts</h3>
+                        </div>
+                    </a>
+
+                    <!-- Item 3 (Square) -->
+                    <a href="#" class="group relative img-zoom-container md:col-span-4 overflow-hidden rounded-sm reveal">
+                        <div class="absolute inset-0 bg-cover bg-center img-zoom opacity-80 group-hover:opacity-100" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2940&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8">
+                            <p class="text-xs tracking-widest uppercase text-secondary mb-3">03 // Spaces</p>
+                            <h3 class="font-display text-2xl font-bold tracking-tight group-hover:translate-x-2 transition-transform duration-500">Architecture</h3>
+                        </div>
+                    </a>
+
+                    <!-- Item 4 (Horizontal) -->
+                    <a href="#" class="group relative img-zoom-container md:col-span-8 overflow-hidden rounded-sm reveal" style="transition-delay: 100ms;">
+                        <div class="absolute inset-0 bg-cover bg-center img-zoom opacity-80 group-hover:opacity-100" style="background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2940&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8">
+                            <p class="text-xs tracking-widest uppercase text-secondary mb-3">04 // Editorial</p>
+                            <h3 class="font-display text-3xl font-bold tracking-tight group-hover:translate-x-2 transition-transform duration-500">Fashion & Portraiture</h3>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background pt-32 pb-10 border-t border-border">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-24">
+                <div>
+                    <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-8">Let's create<br/>something timeless.</h2>
+                    <a href="mailto:hello@matrix.com" class="text-xl md:text-2xl text-secondary hover:text-primary transition-colors border-b border-secondary/30 hover:border-primary pb-2">
+                        hello@matrixstudio.com
+                    </a>
+                </div>
+                <div class="flex flex-col md:items-end justify-end gap-4">
+                    <p class="text-sm tracking-widest uppercase text-secondary mb-4">Follow</p>
+                    <a href="#" class="text-lg hover:text-secondary transition-colors">Instagram</a>
+                    <a href="#" class="text-lg hover:text-secondary transition-colors">Behance</a>
+                    <a href="#" class="text-lg hover:text-secondary transition-colors">Twitter</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border text-secondary text-sm">
+                <p>&copy; 2024 LUMINAPIX STUDIO.</p>
+                <div class="flex gap-8 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-primary transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
